@@ -34,6 +34,9 @@ class Person:
         if self.hp > self.maxhp:
             self.hp = self.maxhp
 
+    def defence(self):
+        return random.randrange(0,self.df)
+        
     def take_damage(self,dmg):
         self.hp -= dmg
         if self.hp <0:
@@ -84,8 +87,7 @@ class Person:
             if enemy.get_hp != 0:
                 print("\t\t"+ str(i)+"."+ enemy.name)
                 i+=1
-        choice = int(input("\tChoose target:"))
-        return choice-1
+        
 
 
     def get_enemy_stats(self):
@@ -98,8 +100,8 @@ class Person:
             cmhp += ' '
         
 
-        print("                    __________________________________________________")
-        print(bcolors.BOLD+ self.name + " "*(8-len(self.name))
+        print("                         __________________________________________________")
+        print(bcolors.BOLD+ self.name + " "*(13-len(self.name))
             + chp+"/"+ cmhp+ "|" + bcolors.FAIL + "█"*int(self.hp*50/self.maxhp) + " "*(50-int(self.hp*50/self.maxhp)) + bcolors.ENDC+ bcolors.BOLD+"|"+ bcolors.ENDC )
 
 
@@ -111,9 +113,8 @@ class Person:
         c_mp = str(self.mp)
         while  len(c_mp) < 3:
             c_mp += ' '
-
-        print("                    _________________________            __________")
-        print(bcolors.BOLD+ self.name+"    "
+        print(" "*25+"_________________________            __________")
+        print(bcolors.BOLD+ self.name+" "*(15-len(self.name))
             + chp+"/"+ str(self.maxhp)+ "|" + bcolors.OKGREEN + "█"*int(self.hp*25/self.maxhp) + " "*(25-int(self.hp*25/self.maxhp)) + bcolors.ENDC+ bcolors.BOLD+"|   " + 
             c_mp +"/" +str(self.maxmp)+"|" + bcolors.OKBLUE + "█"*int(self.mp*10/self.maxmp) + " "*(10-int(self.mp*10/self.maxmp)) +bcolors.ENDC+"|")
 
