@@ -298,14 +298,18 @@ while running:  # Program attack loop begins
                 enemies[enemy].take_damage(item.prop - 2000)
                 print(bcolors.FAIL + "\n" + item.name + " deals ", str(item.prop - 2000),
                       " points of damage to " + enemies[enemy].name + bcolors.ENDC)
-                if enemies[enemy + 1]:
+                try:
                     enemies[enemy+1].take_damage(item.prop - 3500)
                     print(bcolors.FAIL + item.name + " deals " + str(int(item.prop-3500)
                                                                      ) + " damage to " + enemies[enemy+1].name + bcolors.ENDC)
-                if enemies[enemy - 1]:
+                except IndexError:
+                    pass
+                try:
                     enemies[enemy - 1].take_damage(item.prop - 4500)
                     print(bcolors.FAIL + item.name + " deals " + str(int(item.prop - 4500)
                                                                      ) + " damage to " + enemies[enemy-1].name + bcolors.ENDC)
+                except IndexError:
+                    pass
 
                 # The enemies above or below the main target are also affected by the grenade.
                 if enemies[enemy].get_hp() == 0:
