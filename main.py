@@ -316,14 +316,21 @@ while running:  # Program attack loop begins
                     print(bcolors.OKGREEN +
                           enemies[enemy].name + " has died !!" + bcolors.ENDC)
                     del enemies[enemy]
-                if enemies[enemy + 1] and enemies[enemy + 1].get_hp() == 0:
-                    print(bcolors.OKGREEN +
-                          enemies[enemy + 1].name + " has died !!" + bcolors.ENDC)
-                    del enemies[enemy + 1]
-                if enemies[enemy - 1] and enemies[enemy - 1].get_hp() == 0:
-                    print(bcolors.OKGREEN +
-                          enemies[enemy - 1].name + " has died !!" + bcolors.ENDC)
-                    del enemies[enemy - 1]
+                try:
+                    if enemies[enemy + 1].get_hp() == 0:
+                        print(bcolors.OKGREEN +
+                              enemies[enemy + 1].name + " has died !!" + bcolors.ENDC)
+                        del enemies[enemy + 1]
+                except IndexError:
+                    pass
+                try:
+                    if enemies[enemy - 1].get_hp() == 0:
+                        print(bcolors.OKGREEN +
+                              enemies[enemy - 1].name + " has died !!" + bcolors.ENDC)
+                        del enemies[enemy - 1]
+                except IndexError:
+                    pass
+
                 if len(enemies) == 0:
                     print(bcolors.OKGREEN + "You Win!!" + bcolors.ENDC)
                     sys.exit(0)
